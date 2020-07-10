@@ -10,9 +10,9 @@ const getIssPosition = () => {
     .then(response => JSON.parse(response))
     .then(parsedResponse => {
       const position = parsedResponse.iss_position
-      parsedResponse.iss_position = {
-        lat: position.latitude,
-        lng: position.longitude
+      parsedResponse = {
+        lat: Number(position.latitude),
+        lng: Number(position.longitude)
       }
       return parsedResponse;
     })
@@ -20,3 +20,5 @@ const getIssPosition = () => {
 };
 
 getIssPosition().then((result) => console.log(result));
+
+module.exports = { getIssPosition };
